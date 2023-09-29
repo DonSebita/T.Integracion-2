@@ -1,5 +1,5 @@
-import conexionBD from '../../lib/cxDB'
-import Client from '../../models/Client'
+import conexionBD from '@/lib/cxDB'
+import Client from '@/models/Client'
 
 
 export default async function handler(req, res) {

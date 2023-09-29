@@ -1,7 +1,7 @@
-import React from 'react'
+"use client"
 import {useState} from 'react'
 
-const contacto =()=> {
+const Contacto =()=> {
 
 	const [form,setForm]= useState({
 		nombre:'',
@@ -28,9 +28,8 @@ const contacto =()=> {
 
 	const postData = async (form) => {
 		try{
-
 			console.log(form)
-	
+
 			const res = await fetch('/api/client',{				
 				method:'POST',				
 				headers: {
@@ -38,18 +37,16 @@ const contacto =()=> {
 				},
 				body: JSON.stringify(form)
 			})
-	
+
 			const data = await res.json()
 			console.log(data)
-	
-		}catch(err){
-			console.log(err)
+		}catch(error){
+			console.log(error)
 		}
 	}
 
 	return (
-			<div>
-
+			<div >
 	    		<section>
 		        	<h4>Formulario de Contacto</h4>
 		        	<form onSubmit ={handleSubmit}>		       
@@ -71,14 +68,14 @@ const contacto =()=> {
 							onChange={handleChange} 
 				     		placeholder="Ingrese su Apellido"/>
 				     	
-						 <input 
-							
-							type="email" 
-							name="correo" 
+				     	<input 
+				     		
+				     		type="email" 
+				     		name="correo" 
 							autoComplete = "off"
-							value={form.correo} // Cambia 'form.email' a 'form.correo'
+							value={form.email}
 							onChange={handleChange} 
-							placeholder="Ingrese su Correo"/>
+				     		placeholder="Ingrese su Correo"/>
 				        
 				        <input 
 				        	
@@ -104,5 +101,4 @@ const contacto =()=> {
 	    	</div>  	
 	)
 }
-
-export default contacto
+export default Contacto
