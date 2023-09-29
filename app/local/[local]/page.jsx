@@ -5,28 +5,54 @@ import Image from "next/image";
 import Locales from "../page";
 
 export default function Page({ params }) {
-
   let atencion = [
     "Lunes-Vienes: ",
     "Sabado: ",
     "Domingo: ",
-  ]
-  
-  let locales = [
-    {
-      ubicacion:"Santiago, Avenida Libertador Bernardo O'Higgins 1010",
-      encargado:"Diego Rivas",
-      horario:[
-        "9:00AM - 6:00PM",
-        "9:00AM - 5:00PM",
-        "10:00PM - 2:30PM"
-      ]
-    }
-  ]
+  ];
 
+const locales = [
+  {
+    "ubicacion": "Santiago, Avenida Libertador Bernardo O'Higgins 1010",
+    "encargado": "Diego Rivas",
+    "horario": [
+      "9:00AM - 6:00PM",
+      "9:00AM - 5:00PM",
+      "10:00PM - 2:30PM",
+    ],
+    "servicios": [],
+  },
+  {
+    "ubicacion": "Valparaíso, Calle Condell 1546",
+    "encargado": "María López",
+    "horario": ["10:00AM - 6:00PM"],
+    "servicios": [],
+  },
+  {
+    "ubicacion": "Concepción, Av. Chacabuco 1990",
+    "encargado": "Juan Pérez",
+    "horario": [
+      "10:00AM - 8:00PM",
+      "10:00AM - 8:00PM",
+      "10:00AM - 6:00PM",
+    ],
+    "servicios": [],
+  },
+  {
+    "ubicacion": "Punta Arenas, Av. Colón 946",
+    "encargado": "Ana Torres",
+    "horario": ["10:00AM - 7:00PM"],
+    "servicios": [],
+  },
+  {
+    "ubicacion": "Puerto Natales, Av. Arturo Prat 690",
+    "encargado": "Luis Rodríguez",
+    "horario": ["9:00AM - 8:00PM"],
+    "servicios": [],
+  },
+];
 
-
-  if ( params.local >= 0 && params.local <= 5) {
+  if (params.local >= 0 && params.local < 5) {
     return (
       <main className="grid grid-flow-row auto-rows-max bg-primero">
         <section className="flex flex-row h-screen items-center w-full bg-segundo px-14">
@@ -47,14 +73,13 @@ export default function Page({ params }) {
               <h2 className="font-bold">Ubicacion:</h2>
               <p className="pl-5 pb-3">{locales[params.local].ubicacion}</p>
               <h2 className="font-bold">Encargado:</h2>
-              <p className="pl-5 pb-3">{locales[0].encargado}</p>
+              <p className="pl-5 pb-3">{locales[params.local].encargado}</p>
               <h2 className="font-bold">Horario:</h2>
               <div className="pl-5 pb-3">
-              {
-                locales[params.local].horario.map((valor, index) => {
-                    return <p>{atencion[index]}{valor}</p>
-                  }) 
-              }</div>
+                {locales[params.local].horario.map((valor, index) => {
+                  return <p>{atencion[index]}{valor}</p>;
+                })}
+              </div>
               <h2 className="font-bold">Servicios Ofrecidos:</h2>
               <p className="pl-5">Ubicacion bien ubicada</p>
             </div>
@@ -73,7 +98,7 @@ export default function Page({ params }) {
         </section>
       </main>
     );
-  }else{
+  } else {
     return notFound();
   }
 }

@@ -2,9 +2,9 @@ import React from "react";
 
 const CardInfo = (props) => {
   return (
-    <div className={props.className + " grid justify-items-center p-9"}>
+    <div className={props.className + " flex flex-col p-9"}>
       <svg
-        className="w-1/2 justify-items-center"
+        className="w-16 h-auto sm:w-16 md:w-16 lg:w-16 xl:w-24 text-red-500 self-center"
         viewBox="0 0 1024 1024"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
@@ -24,11 +24,11 @@ const CardInfo = (props) => {
         <path d="M279.9 753.7h326.5v16H279.9z" fill="#39393A" />
         <path d="M655.8 753.7h73.9v16h-73.9z" fill="#E73B37" />
       </svg>
-      <h1 className="pt-4 text-2xl">Titulo</h1>
-      <span className="text-left">
-        Lorem ipsum dolor sit amet, officia excepteur ex fugiat reprehenderit
-        enim labore culpa sint ad nisi Lorem pariatur mollit ex esse
-        exercitation amet
+      <h1 className="pt-4 text-xl text-center sm:text-xl md:text-2xl lg:text-4xl xl:text-2xl font-bold">
+        {props.Titulo}
+      </h1>
+      <span className="text-left pt-3 text-base sm:text-sm md:text-lg lg:text-lg xl:text-xl">
+        {props.Descripcion}
       </span>
     </div>
   );
