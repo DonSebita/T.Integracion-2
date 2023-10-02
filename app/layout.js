@@ -15,11 +15,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={
-          " grid grid-flow-row auto-rows-max"}
+          "grid grid-flow-row auto-rows-max"}
       >
         <Navbar />
         {children}
-
         <Footbar />
       </body>
     </html>
