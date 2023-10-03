@@ -1,7 +1,5 @@
 import "./globals.css";
 import CardInfo from "../components/cardinfo";
-import Footbar from "@/components/footbar";
-import Navbar from "@/components/navbar";
 import Image from "next/image";
 import Especifico from "@/components/especificos";
 
