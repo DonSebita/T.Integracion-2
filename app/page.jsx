@@ -98,8 +98,8 @@ export default function Home() {
             sm:grid-cols-2 sm:px-6 sm:gap-2 md:grid-cols-2 md:gap2
             lg:grid-cols-2 
             xl:grid-cols-4 xl:px-16">
-            {valores.map((valor) => (
-              <CardInfo className="bg-tercero text-black"  Titulo={valor.nombre} Descripcion={valor.descripcion} />
+            {valores.map((valor,index) => (
+              <CardInfo className="bg-tercero text-black" key={index}  Titulo={valor.nombre} Descripcion={valor.descripcion} />
             )
             )}           
           </div>

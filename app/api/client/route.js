@@ -1,24 +1,28 @@
-import conexionBD from '@/lib/cxDB'
-import Client from '@/models/Client'
+import conexionBD from "@/lib/cxDB";
+import Cliente from "@/models/Client";
+import { NextResponse } from "next/server";
 
+export async function POST(request) {
+  const { nombre, apellido, correo, telefono, mensaje } = await request.json();
 
-export default async function handler(req, res) {
-  
-  await conexionBD()
+  try {
+    await conexionBD();
+    await Cliente.create({ nombre, apellido, correo, telefono, mensaje })
 
-  const {method} = req 
-  switch(method){
-
-    case 'POST':
-      try{
-
-        const cliente = new Client(req.body)
-        await cliente.save()
-        return res.status(200).json({succes: true,cliente})
-
-      }catch(error){
-        return res.status(400).json({succes: false,error})
+    return NextResponse.json({
+      msg: ["Comentado con exito"],
+      success: true,
+  });
+  } catch (error) {
+    if (error instanceof mongoose.Error.ValidatorError) {
+  let errorList = [];
+      for (let e in error.errors) {
+        errorList.push(e.mensaje);
       }
-    default: return res.status(500).json({succes: false, error:"Error al enviar"})
+
+      return NextResponse.json({ msg: errorList });
+  } else {
+      return NextResponse.json({ msg: "Unable to send message." });
+    }
   }
 }
