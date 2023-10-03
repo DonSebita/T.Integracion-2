@@ -7,7 +7,7 @@ const links = [{
     ruta: '/'
   },{
     label : 'Locales',
-    ruta: '/local'
+    ruta: '/principal/local'
   },{
     label : 'Contactanos',
     ruta: '/principal/contacto'
