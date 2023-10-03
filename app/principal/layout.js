@@ -1,4 +1,3 @@
-import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footbar from "@/components/footbar";
 import { Inter } from "next/font/google";
@@ -17,7 +16,9 @@ export default function RootLayout({ children }) {
         className={
           "grid grid-flow-row auto-rows-max"}
       >
+        <Navbar />
         {children}
+        <Footbar />
       </body>
     </html>
   );

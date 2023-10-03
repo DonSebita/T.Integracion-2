@@ -135,22 +135,6 @@ const Contacto = () => {
                       />
                     </div>
                     <div class="md:col-span-5">
-                      <div class="inline-flex items-center">
-                        <input
-                          type="checkbox"
-                          name="M_edad"
-                          id="M_edad"
-                          class="form-checkbox"
-                        />
-                        <label
-                          for="M_edad"
-                          class="font-semibold text-l text-gray-500 pl-2"
-                        >
-                          Eres mayor de edad
-                        </label>
-                      </div>
-                    </div>
-                    <div class="md:col-span-5">
                       <textarea
                         class="font-semibold text-l h-10 border mt-1 rounded px-4 w-full text-black resize-none"
                         name="mensaje"
