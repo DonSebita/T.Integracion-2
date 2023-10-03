@@ -30,12 +30,12 @@ const Navbar = () => {
 
 
       <div className='w-full block flex-grow lg:flex lg:items-center lg:w-auto'>
-      {links.map(({label,ruta})=>(
-          <li key={ruta}>
+      {links.map(({label,ruta}, index)=>(
             <Link
               className='block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4'
-              href={ruta}>{label}</Link>
-          </li>
+              href={ruta}
+              key={index}
+            >{label}</Link>
         ))}
       </div>
     </nav>
