@@ -1,8 +1,8 @@
 import "@/app/globals.css";
 
 import Image from "next/image";
-import Navbar from "../../components/navbar";
-import Footbar from "../../components/footbar";
+import Navbar from "@/components/navbar";
+import Footbar from "@/components/footbar";
 import Link from "next/link";
 
 export const metadata = {
@@ -105,7 +105,7 @@ export default function Locales() {
                 <div>
                   <Link
                      className="rounded-l-lg p-2 bg-cuarto hover:drop-shadow-lg border-r-2 border-black"
-                    href={"/local/" + lugar.id}
+                    href={"/principal/local/" + lugar.id}
                   >
                     Información
                   </Link>
