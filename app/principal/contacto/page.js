@@ -25,7 +25,7 @@ const Contacto = () => {
 
   const postData = async (form) => {
     try {
-      console.log(form);
+      //console.log(form);
 
       const res = await fetch("/api/client", {
         method: "POST",
