@@ -133,23 +133,7 @@ const Contacto = () => {
                         placeholder="Ingrese su Número de fono"
                       />
                     </div>
-                    <div className="md:col-span-5">
-                      <div className="inline-flex items-center">
-                        <input
-                          type="checkbox"
-                          name="M_edad"
-                          id="M_edad"
-                          className="form-checkbox"
-                        />
-                        <label
-                          htmlFor="M_edad"
-                          className="font-semibold text-l text-gray-500 pl-2"
-                        >
-                          Eres mayor de edad
-                        </label>
-                      </div>
-                    </div>
-                    <div className="md:col-span-5">
+                    <div class="md:col-span-5">
                       <textarea
                         className="font-semibold text-l h-10 border mt-1 rounded px-4 w-full text-black resize-none"
                         name="mensaje"
