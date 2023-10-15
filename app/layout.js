@@ -1,6 +1,8 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { NextAuthProvider } from "./Providers";
+import Footbar from "@/components/footbar"
+
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +19,8 @@ export default function RootLayout({ children }) {
           "grid grid-flow-row auto-rows-max"}
       >
         <NextAuthProvider>
-        <Navbar />
         {children}
-        <Footbar />
+          <Footbar/>
         </NextAuthProvider>
       </body>
     </html>
