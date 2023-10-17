@@ -20,7 +20,6 @@ export default function RootLayout({ children }) {
       >
         <NextAuthProvider>
         {children}
-          <Footbar/>
         </NextAuthProvider>
       </body>
     </html>

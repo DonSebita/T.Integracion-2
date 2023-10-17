@@ -1,5 +1,11 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials"
+
+import bcrypt from "bcryptjs";
+import mongoose from "mongoose";
+import conexionBD from '@/lib/cxDB'
+import Abogado from '@/models/abogados'
 
 const authOptions = {
   // Configuracion del proveedor
@@ -16,6 +22,33 @@ const authOptions = {
         },
       },
     }),
+    CredentialsProvider({
+      name:"credentials",
+      credentials:{},
+
+       async authorize(credentials) {
+        const { rut, clave } = credentials;
+
+        try {
+          await conexionBD();
+          const user = await Abogado.findOne({ rut });
+
+          if (!user) {
+            return null;
+          }
+
+          const claveCoin = await bcrypt.compare(clave, user.clave);
+
+          if (!claveCoin) {
+            return null;
+          }
+
+          return user;
+        } catch (error) {
+          console.log("Error: ", error);
+        }
+      },
+    })
   ],
   callbacks: {
     async jwt({ token, account }) {
