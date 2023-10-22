@@ -1,10 +1,52 @@
-import conexionBD from '@/lib/cxDB'
+
+/*import conexionBD from '@/lib/cxDB'
 import Client from '@/models/Client'
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import mongoose from "mongoose";
+import mongoose from "mongoose";*/
 
-export async function POST(request: Request) {
+import conexionBD from "@/lib/cxDB";
+import clients from "@/models/Client";
+
+export async function GET(request) {
+  try {
+    await conexionBD();
+
+    const resultados = await clients.find();
+    const formattedResults = resultados.map((result) => ({
+      nombre: result.nombre,
+      apellido: result.apellido,
+      correo: result.correo,
+      telefono: result.telefono,
+      mensaje: result.mensaje,
+    }));
+
+    return Response.json(formattedResults);
+  } catch (error) {
+    console.log(error);
+    return Response.json({ error: "Hubo un error al obtener los datos." });
+  }
+}
+
+
+export async function POST(request) {
+  try {
+    await conexionBD();
+    const { nombre, apellido, correo, telefono, mensaje } = await request.json();
+    await clients.create({ nombre, apellido, correo, telefono, mensaje });
+    return NextResponse.json({
+      msg: ["Comentado con exito"],
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json({
+      succes: false
+    })
+  }
+}
+
+/*export async function POST(request: Request) {
   try {
     await connectDB();
 
@@ -61,4 +103,4 @@ export async function POST(request: Request) {
     }
     return NextResponse.error();
   }
-}
+}*/

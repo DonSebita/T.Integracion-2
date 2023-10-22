@@ -8,7 +8,7 @@ const clientSchema = new mongoose.Schema({
   mensaje: String,
 });
 */
-const clientSchema = new Schema({
+const clienteSchema = new Schema({
   nombre: {
     type: String,
     require: [true, "El nombre es requerido"],
@@ -36,6 +36,6 @@ const clientSchema = new Schema({
   },
 });
 
-const Cliente = mongoose.models.Client || mongoose.model("Client", clientSchema)
+const clients = mongoose.models.clients || mongoose.model("clients", clienteSchema)
 
-export default Cliente
+export default clients

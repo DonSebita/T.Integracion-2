@@ -7,8 +7,7 @@ import Footbar from "@/components/footbar"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Home",
-  description: "Pagina de inicio abogados",
+  title: "S&S",
 };
 
 export default function RootLayout({ children }) {
