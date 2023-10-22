@@ -38,11 +38,36 @@ export async function POST(request) {
       msg: ["Comentado con exito"],
       success: true,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error) 
+{    console.log(error);
     return NextResponse.json({
       succes: false
     })
+  }
+}
+
+export default async function handler(req, res) {
+  const { method } = req;
+
+  await dbConnect();
+
+  switch (method) {
+    case 'DELETE':
+      try {
+        const userId = req.query.id;
+        const user = await User.findByIdAndRemove(userId);
+        if (!user) {
+          return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+        res.status(200).json({ message: 'Usuario eliminado correctamente' });
+      } catch (error) {
+        res.status(500).json({ error: 'Error al eliminar el usuario' });
+      }
+      break;
+
+    default:
+      res.status(405).json({ error: `El método ${method} no está permitido` });
+      break;
   }
 }
 
