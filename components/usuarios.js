@@ -1,41 +1,8 @@
 "use client"
+import RemoveBtn from "./btnDelete"
 import { useEffect, useState } from 'react';
 
-// const aaaa = (userId) => {
-//   if (window.confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-//     fetch(`/api/client/${userId}`, {
-//       method: 'DELETE',
-//     })
-//       .then((response) => {
-//         if (response.status === 200) {
-//           // Recarga la lista de usuarios después de la eliminación
-//           fetchUsers();
-//         } else {
-//           console.error('Error al eliminar el usuario');
-//         }
-//       })
-//       .catch((error) => console.error('Error:', error));
-//   }
-// };
-
-// const borrar = (userId)=>{
-// 	if (window.confirm('¿Estás seguro de que deseas eliminar este usuario?')) {
-// 		const request = {
-// 	    method: 'DELETE',
-// 	    headers: { 'Content-Type': 'application/json' },
-// 	    body: JSON.stringify(userId)
-// 	    };
-
-// 	    fetch(`/api/client/${userId}`, request)
-// 	    .then(response => {
-// 	        if (response.status == 200) {
-// 	        this.loadList();
-// 	    }
-// 		});
-// }}
-
-
-function Usuarios() {
+function Usuarios(props) {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -59,22 +26,14 @@ function Usuarios() {
           </tr>
         </thead>
         <tbody>
-		  {users.map((user, index) => (
+		  {users.map((user,index) => (
 		    <tr key={index}>
 		      <td>{user.nombre}</td>
 		      <td>{user.apellido}</td>
 		      <td>{user.telefono}</td>
 		      <td>{user.mensaje}</td>
 		      <td>
-		        <button >
-		          Enviar Mensaje
-		        </button>
-		        <button >
-		          Editar
-		        </button>
-		        <button onClick={() => borrar(user._id)}>
-		          Eliminar
-		        </button>
+		        <RemoveBtn id={user._id}/>
 		      </td>
 		    </tr>
 		  ))}
