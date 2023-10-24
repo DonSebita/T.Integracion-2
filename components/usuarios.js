@@ -1,6 +1,7 @@
-"use client"
-import RemoveBtn from "./btnDelete"
-import { useEffect, useState } from 'react';
+"use client";
+import React, { useEffect, useState } from 'react';
+import RemoveBtn from "./btnDelete";
+import 'tailwindcss/tailwind.css';
 
 function Usuarios(props) {
   const [users, setUsers] = useState([]);
@@ -12,34 +13,35 @@ function Usuarios(props) {
       .catch((error) => console.error('Error:', error));
   }, []);
 
-  return (   
-  	<div>
-      <h2>Lista de Usuarios:</h2>
-      <table>
+  return (
+    <div className="overflow-x-auto p-4">
+      <h2 className="text-2xl font-bold mb-4 text-gray-800">Lista de Usuarios:</h2>
+      <table className="min-w-full bg-white border border-gray-300 shadow-lg rounded-lg text-sm">
         <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Teléfono</th>
-            <th>Consulta</th>
-            <th>Acciones</th>
+          <tr className="bg-gray-100">
+            <th className="py-2 px-4">Nombre</th> 
+            <th className="py-2 px-4">Apellido</th>
+            <th className="py-2 px-4">Teléfono</th>
+            <th className="py-2 px-4">Consulta</th>
+            <th className="py-2 px-4">Acciones</th>
           </tr>
         </thead>
         <tbody>
-		  {users.map((user,index) => (
-		    <tr key={index}>
-		      <td>{user.nombre}</td>
-		      <td>{user.apellido}</td>
-		      <td>{user.telefono}</td>
-		      <td>{user.mensaje}</td>
-		      <td>
-		        <RemoveBtn id={user._id}/>
-		      </td>
-		    </tr>
-		  ))}
-		</tbody>	
+          {users.map((user, index) => (
+            <tr key={user._id} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+              <td className="py-2 px-4">{user.nombre}</td>
+              <td className="py-2 px-4">{user.apellido}</td>
+              <td className="py-2 px-4">{user.telefono}</td>
+              <td className="py-2 px-4">{user.mensaje}</td>
+              <td className="py-2 px-4">
+                <RemoveBtn id={user._id} />
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </table>
     </div>
   );
 }
+
 export default Usuarios;
