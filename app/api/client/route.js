@@ -44,3 +44,14 @@ export async function DELETE(request) {
   await clients.findByIdAndDelete(id);
   return NextResponse.json({ message: "cliente eliminado" }, { status: 200 });
 }
+
+export async function PUT(request, { params }) {
+  const id_cambiar = request.nextUrl.searchParams.get("id");
+  const update = { newNombre: nombre, newApellido: apellido, newCorreo: correo, newTelefono: telefono, newMensaje: mensaje } = await request.json();
+
+  await conexionBD();
+  await clients.findByIdAndUpdate(id_cambiar, update);
+  return NextResponse.json({ message: "Datos actualizados" }, { status: 200 });
+}
+
+
