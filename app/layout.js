@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { NextAuthProvider } from "./Providers";
+import { NextAuthProvider } from "@/lib/SesionProviders";
 import Footbar from "@/components/footbar"
 
 

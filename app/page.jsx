@@ -74,6 +74,7 @@ export default function Home() {
                 src={"/Image/inicio/InicioWeb.jpg"}
                 height={2283}
                 width={7500}
+                alt="imagen_inicio"
               />|
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black opacity-60">
               </div>
@@ -110,8 +111,8 @@ export default function Home() {
             Áreas de especialización
           </h1>
           <div className="flex flex-wrap gap-4 px-16 sm:gap-4 lg:gap-8 justify-center sm:px-8 md:px-12 lg:px-16 xl:px-64">
-            {Area.map((espe) => (
-              <div className="flex flex-col w-2/5 sm:w-1/2 md:w-1/3 
+            {Area.map((espe, index) => (
+              <div key={index} className="flex flex-col w-2/5 sm:w-1/2 md:w-1/3 
       lg:w-1/4 xl:w-2/6 px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 py-4 sm:py-6 mb-4 sm:mb-6 shadow-md focus:border-2 border-black">
                 <Image
                   className="w-2/3  sm:w-2/3 md:w-1/2 rounded-full self-center mx-auto"

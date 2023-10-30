@@ -15,7 +15,7 @@ const FormEventCalendar = () => {
   const handleChange = (e) => {
     const { value, name } = e.target;
     setForm({
-      ...form,
+  ...form,
       [name]: value,
     });
   };
