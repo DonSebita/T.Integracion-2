@@ -11,6 +11,7 @@ const links = [
 ];
 
 const Navbar = () => {
+  const { data: session } = useSession();
   const { status } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -19,18 +20,17 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-teal-500 p-6">
+    <nav className="bg-teal-500 py-3 px-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <Link href="/">
-          <Image
-            src={"/logo.png"}
-            width={50}
-            height={50}
-            alt="logo principal"
-            className="w-auto h-10 mx-5"
-          />
-
+            <Image
+              src={"/logo.png"}
+              width={500}
+              height={500}
+              alt="logo principal"
+              className="w-auto h-12 mx-4"
+            />
           </Link>
         </div>
 
@@ -49,11 +49,9 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {menuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12"></path>
-              ) : (
-                <path d="M4 6h16M4 12h16m-7 6h7"></path>
-              )}
+              {menuOpen
+                ? <path d="M6 18L18 6M6 6l12 12"></path>
+                : <path d="M4 6h16M4 12h16m-7 6h7"></path>}
             </svg>
           </button>
 
@@ -70,27 +68,29 @@ const Navbar = () => {
                 </Link>
               ))}
 
-              {status === "authenticated" ? (
-                <button
-                  className="text-white block mt-4 hover:text-gray-200"
-                  onClick={() => {
-                    signOut();
-                    setMenuOpen(false);
-                  }}
-                >
-                  Cerrar sesión
-                </button>
-              ) : (
-                <button
-                  className="text-white block mt-4 hover:text-gray-200"
-                  onClick={() => {
-                    signIn();
-                    setMenuOpen(false);
-                  }}
-                >
-                  Iniciar Sesión
-                </button>
-              )}
+              {status === "authenticated"
+                ? (
+                  <button
+                    className="text-white block mt-4 hover:text-gray-200"
+                    onClick={() => {
+                      signOut();
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Cerrar sesión
+                  </button>
+                )
+                : (
+                  <button
+                    className="text-white block mt-4 hover:text-gray-200"
+                    onClick={() => {
+                      signIn();
+                      setMenuOpen(false);
+                    }}
+                  >
+                    Iniciar Sesión
+                  </button>
+                )}
             </div>
           )}
         </div>
@@ -107,25 +107,52 @@ const Navbar = () => {
             </Link>
           ))}
 
-          {status === "authenticated" ? (
-            <button
-              className="text-white mt-4 lg:mt-0 ml-4 hover:text-gray-200"
-              onClick={() => {
-                signOut();
-              }}
-            >
-              Cerrar sesión
-            </button>
-          ) : (
-            <button
-              className="text-white mt-4 lg:mt-0 ml-4 hover:text-gray-200"
-              onClick={() => {
-                signIn();
-              }}
-            >
-              Iniciar Sesión
-            </button>
-          )}
+          {status === "authenticated"
+            ? (
+              <div class="group inline-block relative w-auto">
+                <button class="relative focus:outline-none rounded-sm flex flex-col items-center min-w-32">
+                  <Image
+                    className="w-16 rounded-full"
+                    width={500}
+                    height={500}
+                    src={`/Image/users/${session?.user?.nombre}_${session?.user?.apellido}.jpeg`}
+                    alt="user photo"
+                    autofocus
+                  />
+                  <span class="pr-1 font-semibold flex-1">
+                    {session?.user?.nombre} {session?.user?.apellido}
+                  </span>
+                </button>
+                <ul class="bg-teal-500 border border-teal-700 rounded-sm transform scale-0 group-hover:scale-100 absolute
+  transition duration-150 ease-in-out origin-top min-w-32 z-50 mt-2">
+                  <li class="rounded-sm px-3 py-1 border-b border-gray-300 hover:bg-teal-600">
+                    Perfil
+                  </li>
+                  <li class="rounded-sm px-3 py-1 border-b border-gray-300 hover:bg-teal-600">
+                    Eventos
+                  </li>
+                  <li class="rounded-sm px-3 py-1 hover:bg-teal-600">
+                    <button
+                      onClick={() => {
+                        signOut();
+                      }}
+                    >
+                      Cerrar sesion
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )
+            : (
+              <button
+                className="text-white mt-4 lg:mt-0 ml-4 hover:text-gray-200"
+                onClick={() => {
+                  signIn();
+                }}
+              >
+                Iniciar Sesión
+              </button>
+            )}
         </div>
       </div>
     </nav>

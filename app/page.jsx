@@ -68,9 +68,9 @@ export default function Home() {
       <div className="grid grid-flow-row auto-rows-max hover:auto-rows-min">
         <section className="w-full">
           <div className="relative w-full">
-            <div className="relative inset-0">
+            <div className="static inset-0">
               <Image
-                className="w-full h-auto"
+                className="w-full h-auto inline-block"
                 src={"/Image/inicio/InicioWeb.jpg"}
                 height={2283}
                 width={7500}

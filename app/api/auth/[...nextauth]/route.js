@@ -21,15 +21,28 @@ export const authOptions = {
       },
     }),
     CredentialsProvider({
+      id: "credentials",
       name: "S&S Abogados",
-      credentials: {},
+
+      credentials: {
+        correo: {
+          label: "Correo",
+          type: "text ",
+          placeholder: "Ingresar Correo",
+        },
+        clave: {
+          label: "Contraseña",
+          type: "text",
+          placeholder: "Ingresar contraseña",
+        },
+      },
 
       async authorize(credentials, req) {
-        const { rut, clave } = credentials;
+        const { correo, clave } = credentials;
         try {
           await conexionBD();
-          const usuario = await Abogado.findOne({ rut });
-          console.log(usuario)
+          const usuario = await Abogado.findOne({ correo });
+
           if (!usuario) {
             console.log("No hay");
             return { error: "Usuario inexistente" };
@@ -37,14 +50,16 @@ export const authOptions = {
 
           const user = {
             id: usuario.id,
-            rut: usuario.rut,
-            nombre: usuario.Nombre,
+            //rut: usuario.rut,
+            correo: usuario.correo,
+            nombre: usuario.nombre,
             apellido: usuario.apellido,
           };
-          console.log(user);
+
           const claveCoin = await bcrypt.compare(clave, usuario.clave);
 
           if (!claveCoin) {
+            console.log("No son iguales");
             return { error: "Contraseña incorrecta" };
           }
 
@@ -53,34 +68,61 @@ export const authOptions = {
           console.log("Error: ", error);
         }
       },
-
-      credentials: {
-        rut: { label: "Rut", type: "text ", placeholder: "Ingresar rut" },
-        clave: {
-          label: "Contraseña",
-          type: "text",
-          placeholder: "Ingresar contraseña",
-        },
-      },
     }),
   ],
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
+      if (account?.provider == "credentials") {
+        //console.log("signIn", credentials);
+        return true;
+      }
+      if (account?.provider == "google") {
+        //console.log("signIn", user);
+        return true;
+      }
       if (user?.error === "Usuario inexistente") {
         console.log("Matame");
         return Response.json({ error: "Usuario no existente", status: false });
       }
     },
-    async jwt({ token, account }) {
+
+    async jwt({ token, account, user, profile }) {
       if (account) {
-        token.id = account.providerAccountId;
-        token.access_token = account.access_token;
-        console.log(account);
+        if (account.provider == "credentials") {
+          token.provider = account.provider;
+          token.id = account.providerAccountId;
+          token.user = user;
+          return token;
+        }
+        if (account.provider == "google") {
+          token.id = account.providerAccountId;
+          token.provider = account.provider;
+          token.access_token = account.access_token;
+          token.user = {
+            id: user.id,
+            name: profile.given_name,
+            apellido: profile.family_name,
+            correo: profile.email,
+          };
+          //console.log(profile);
+          console.log(user);
+          return token;
+        }
       }
+      //console.log("Token", account);
       return token;
     },
     async session({ session, token, user }) {
-      session.access_token = token.access_token;
+      if (token.access_token) {
+        session.access_token = token.access_token;
+      }
+      session.user = token.user;
+      // console.log("Sesion", session)
+      //console.log(user)
+      //console.log("token", session);
       return session;
     },
   },

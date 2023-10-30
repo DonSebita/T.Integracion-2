@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 
 const Register = () => {
-  const [toastView, setToastView] = useState(false);
-  const [texto, setTexto] = useState("");
+ 
 
   const [form, setForm] = useState({
     nombre: "",
@@ -22,12 +21,18 @@ const Register = () => {
     });
   };
 
+  const [toastView, setToastView] = useState(false);
+  const [texto, setTexto] = useState("");
+
   const showToast = (texto) => {
     setToastView(true);
+    setTexto(texto);
+   
 
     // Desaparecer después de 2 segundos
     setTimeout(() => {
       setToastView(false);
+      setTexto("");
     }, 2000);
   };
 
@@ -49,8 +54,8 @@ const Register = () => {
       });
 
       const { info } = await res.json();
-      showToast();
-      setTexto(info);
+      showToast(info);
+      
     } catch (error) {
       console.log(error);
     }
