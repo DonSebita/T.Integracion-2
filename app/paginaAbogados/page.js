@@ -20,7 +20,7 @@ const CalendarPage = () => {
         <MyCalendar events={events} />
       </div>
       <div style={{ flex: 1, padding: "20px" }}>
-        <h1>Lista de Usuarios</h1>
+      
         <Usuarios />
       </div>
     </div>

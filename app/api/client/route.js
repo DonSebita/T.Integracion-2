@@ -47,10 +47,11 @@ export async function DELETE(request) {
 
 export async function PUT(request, { params }) {
   const id_cambiar = request.nextUrl.searchParams.get("id");
-  const update = { newNombre: nombre, newApellido: apellido, newCorreo: correo, newTelefono: telefono, newMensaje: mensaje } = await request.json();
-
+  //const update = { newNombre: nombre, newApellido: apellido, newCorreo: correo, newTelefono: telefono, newMensaje: mensaje } = await request.json();
+  const { nombre, apellido, correo, telefono, mensaje } = await request.json();
+  console.log(nombre, apellido)
   await conexionBD();
-  await clients.findByIdAndUpdate(id_cambiar, update);
+  await clients.findByIdAndUpdate(id_cambiar, { nombre: nombre,  apellido: apellido, correo:correo, telefono: telefono, mensaje:mensaje});
   return NextResponse.json({ message: "Datos actualizados" }, { status: 200 });
 }
 
