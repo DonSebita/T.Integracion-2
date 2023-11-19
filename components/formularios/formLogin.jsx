@@ -35,7 +35,8 @@ export default function Login(props) {
       const res = await signIn("credentials", {
         correo,
         clave: password,
-        redirect: false,
+        //redirect: false,
+        callbackUrl: "/paginaAbogados",
       });
       console.log(res);
       if (res.error) {

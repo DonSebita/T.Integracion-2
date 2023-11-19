@@ -24,6 +24,7 @@ const abogadoSchema = new Schema({
   correo: {
     type: String,
     required: [true, "El correo es requerida"],
+    unique: true,
     trim: true,
   },
 });

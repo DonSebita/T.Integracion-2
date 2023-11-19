@@ -20,8 +20,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-teal-500 py-3 px-5">
-      <div className="flex items-center justify-between">
+    <nav className="bg-teal-500">
+      <div className="flex items-center justify-between py-3 pr-5">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <Link href="/">
             <Image
@@ -109,29 +109,29 @@ const Navbar = () => {
 
           {status === "authenticated"
             ? (
-              <div class="group inline-block relative w-auto">
-                <button class="relative focus:outline-none rounded-sm flex flex-col items-center min-w-32">
+              <div className="group inline-block relative w-auto bg-teal-300 h-full px-3 py-2">
+                <button className="relative focus:outline-none rounded-sm flex flex-col items-center min-w-32">
                   <Image
                     className="w-16 rounded-full"
                     width={500}
                     height={500}
                     src={`/Image/users/${session?.user?.nombre}_${session?.user?.apellido}.jpeg`}
                     alt="user photo"
-                    autofocus
+                    autoFocus
                   />
-                  <span class="pr-1 font-semibold flex-1">
+                  <span className="pr-1 font-semibold flex-1">
                     {session?.user?.nombre} {session?.user?.apellido}
                   </span>
                 </button>
-                <ul class="bg-teal-500 border border-teal-700 rounded-sm transform scale-0 group-hover:scale-100 absolute
+                <ul className="bg-teal-500 border border-teal-700 rounded-sm transform scale-0 group-hover:scale-100 absolute
   transition duration-150 ease-in-out origin-top min-w-32 z-50 mt-2">
-                  <li class="rounded-sm px-3 py-1 border-b border-gray-300 hover:bg-teal-600">
-                    Perfil
+                  <li className="rounded-sm px-3 py-1 border-b border-gray-300 hover:bg-teal-600">
+                    <Link href={"/user/perfil"}>Perfil</Link>
                   </li>
-                  <li class="rounded-sm px-3 py-1 border-b border-gray-300 hover:bg-teal-600">
-                    Eventos
+                  <li className="rounded-sm px-3 py-1 border-b border-gray-300 hover:bg-teal-600">
+                    <Link href={"/paginaAbogados"}>Eventos</Link>
                   </li>
-                  <li class="rounded-sm px-3 py-1 hover:bg-teal-600">
+                  <li className="rounded-sm px-3 py-1 hover:bg-teal-600">
                     <button
                       onClick={() => {
                         signOut();

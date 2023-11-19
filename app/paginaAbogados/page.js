@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import MyCalendar from "@/components/MyCalendar";
-import Usuarios from "@/components/usuarios"; 
+import Usuarios from "@/components/usuarios";
 
 const events = [
   {
@@ -21,7 +21,7 @@ const CalendarPage = () => {
       </div>
       <div style={{ flex: 1, padding: "20px" }}>
         <h1>Lista de Usuarios</h1>
-        <Usuarios />
+          <Usuarios />
       </div>
     </div>
   );

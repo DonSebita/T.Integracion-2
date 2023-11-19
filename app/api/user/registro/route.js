@@ -39,6 +39,7 @@ export async function POST(request) {
       { status: 200 },
     );
   } catch (error) {
+    console.log(error)
     return new Response(error, {
       status: 500,
     });

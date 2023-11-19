@@ -32,10 +32,11 @@ export const authOptions = {
         },
         clave: {
           label: "Contraseña",
-          type: "text",
+          type: "password",
           placeholder: "Ingresar contraseña",
         },
       },
+
 
       async authorize(credentials, req) {
         const { correo, clave } = credentials;
@@ -72,6 +73,9 @@ export const authOptions = {
   ],
   session: {
     strategy: "jwt",
+  },
+  pages: {
+    signIn: '/user/login',
   },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {

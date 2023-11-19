@@ -9,17 +9,14 @@ export const metadata = {
   description: "Pagina de inicio abogados",
 };
 
-export default function RootLayout({ children }) {
+export default function Layout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={
-          "grid grid-flow-row auto-rows-max"}
-      >
-        <Navbar />
-        {children}
-        <Footbar />
-      </body>
-    </html>
+    <div
+      className={"grid grid-flow-row auto-rows-max"}
+    >
+      <Navbar />
+      <main>{children}</main>
+      <Footbar />
+    </div>
   );
 }
