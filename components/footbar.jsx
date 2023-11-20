@@ -20,7 +20,7 @@ const Footbar = (props) => {
         <div className="flex flex-col items-center text-center">
           <Link href="/">
             <Image
-              src="/../public/logo.png"
+              src="/logo.png"
               width={50}
               height={50}
               alt="logo principal"

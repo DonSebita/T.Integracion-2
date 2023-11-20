@@ -11,46 +11,46 @@ export default function Page({ params }) {
     "Domingo: ",
   ];
 
-const locales = [
-  {
-    "ubicacion": "Santiago, Avenida Libertador Bernardo O'Higgins 1010",
-    "encargado": "Diego Rivas",
-    "horario": [
-      "9:00AM - 6:00PM",
-      "9:00AM - 5:00PM",
-      "10:00PM - 2:30PM",
-    ],
-    "servicios": [],
-  },
-  {
-    "ubicacion": "Valparaíso, Calle Condell 1546",
-    "encargado": "María López",
-    "horario": ["10:00AM - 6:00PM"],
-    "servicios": [],
-  },
-  {
-    "ubicacion": "Concepción, Av. Chacabuco 1990",
-    "encargado": "Juan Pérez",
-    "horario": [
-      "10:00AM - 8:00PM",
-      "10:00AM - 8:00PM",
-      "10:00AM - 6:00PM",
-    ],
-    "servicios": [],
-  },
-  {
-    "ubicacion": "Punta Arenas, Av. Colón 946",
-    "encargado": "Ana Torres",
-    "horario": ["10:00AM - 7:00PM"],
-    "servicios": [],
-  },
-  {
-    "ubicacion": "Puerto Natales, Av. Arturo Prat 690",
-    "encargado": "Luis Rodríguez",
-    "horario": ["9:00AM - 8:00PM"],
-    "servicios": [],
-  },
-];
+  const locales = [
+    {
+      "ubicacion": "Santiago, Avenida Libertador Bernardo O'Higgins 1010",
+      "encargado": "Diego Rivas",
+      "horario": [
+        "9:00AM - 6:00PM",
+        "9:00AM - 5:00PM",
+        "10:00PM - 2:30PM",
+      ],
+      "servicios": [],
+    },
+    {
+      "ubicacion": "Valparaíso, Calle Condell 1546",
+      "encargado": "María López",
+      "horario": ["10:00AM - 6:00PM"],
+      "servicios": [],
+    },
+    {
+      "ubicacion": "Concepción, Av. Chacabuco 1990",
+      "encargado": "Juan Pérez",
+      "horario": [
+        "10:00AM - 8:00PM",
+        "10:00AM - 8:00PM",
+        "10:00AM - 6:00PM",
+      ],
+      "servicios": [],
+    },
+    {
+      "ubicacion": "Punta Arenas, Av. Colón 946",
+      "encargado": "Ana Torres",
+      "horario": ["10:00AM - 7:00PM"],
+      "servicios": [],
+    },
+    {
+      "ubicacion": "Puerto Natales, Av. Arturo Prat 690",
+      "encargado": "Luis Rodríguez",
+      "horario": ["9:00AM - 8:00PM"],
+      "servicios": [],
+    },
+  ];
 
   if (params.local >= 0 && params.local < 5) {
     return (
@@ -59,7 +59,7 @@ const locales = [
           <div className="w-3/5 bg-primero p-14">
             <div className="flex justify-center">
               <Image
-                className=""
+                className="flex justify-center"
                 src={"/Image/locales/TiendaAbogado1.jpg"}
                 width={500}
                 height={500}
@@ -77,7 +77,7 @@ const locales = [
               <h2 className="font-bold">Horario:</h2>
               <div className="pl-5 pb-3">
                 {locales[params.local].horario.map((valor, index) => {
-                  return <p>{atencion[index]}{valor}</p>;
+                  return <p key={index}>{atencion[index]}{valor}</p>;
                 })}
               </div>
               <h2 className="font-bold">Servicios Ofrecidos:</h2>

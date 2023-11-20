@@ -1,8 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import { NextAuthProvider } from "./Providers";
-import Footbar from "@/components/footbar"
-
+import { NextAuthProvider } from "@/lib/SesionProviders";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,7 +8,7 @@ export const metadata = {
   title: "S&S",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body

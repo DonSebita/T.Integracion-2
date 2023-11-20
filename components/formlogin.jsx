@@ -21,13 +21,13 @@ export default function Login() {
         password,
         redirect: false,
       });
-
+      console.log(res)
       if (res.error) {
         setError("Credenciales invalidas");
         return;
       }
 
-      router.replace("dashboard");
+      //router.replace("dashboard");
     } catch (error) {
       console.log(error);
     }
