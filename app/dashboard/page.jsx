@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function dashboard() {
+export default function Dashboard() {
   const { data: session } = useSession();
   const [casos, setCasos] = useState([]);
 
