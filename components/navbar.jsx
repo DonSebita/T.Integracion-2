@@ -24,13 +24,14 @@ const Navbar = () => {
       <div className="flex items-center justify-between py-3 pr-5">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <Link href="/">
-            <Image
-              src={"/logo.png"}
-              width={500}
-              height={500}
-              alt="logo principal"
-              className="w-auto h-12 mx-4"
-            />
+          <Image
+            src="/../public/logo.png"
+            width={50}
+            height={50}
+            alt="logo principal  nadvar"
+            className="w-auto h-10 mx-5"
+          />
+
           </Link>
         </div>
 
