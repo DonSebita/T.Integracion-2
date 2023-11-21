@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
-export default function EditTopicForm({ id, nombre, apellido, correo, telefono, mensaje }) {
+export default function Edit_Form({ id, nombre, apellido, correo, telefono, mensaje }) {
   const [newNombre, setNewNombre] = useState(nombre);
   const [newApellido, setNewApellido] = useState(apellido);
   const [newCorreo, setNewCorreo] = useState(correo);
@@ -27,7 +27,7 @@ export default function EditTopicForm({ id, nombre, apellido, correo, telefono, 
         throw new Error("Error al actualizar");
       }
 
-      router.refresh();
+      router.push(router.pathname);
       //router.push("/");
     } catch (error) {
       console.log(error);

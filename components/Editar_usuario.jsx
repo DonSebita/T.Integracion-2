@@ -1,16 +1,15 @@
-"use client";
-import React, { useState } from "react";
-import Router from "next/router";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
 function Editar_usuario(props) {
-  const id = props.id;
-
-  const [form, setForm] = useState({
+   const id = props.id
+   
+   const [form, setForm] = useState({
     nombre: props.nombre,
     apellido: props.apellido,
     correo: props.correo,
     telefono: props.telefono,
-    mensaje: props.mensaje,
+    mensaje: props.mensaje ,
   });
 
   const handleChange = (e) => {
@@ -23,26 +22,25 @@ function Editar_usuario(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postData(form);
-    console.log(form);
-    Router.reload(window.location.pathname)
-  };
+      postData(form);
+    //console.log(form)
+    
+    
+  
+};
 
   const postData = async (form) => {
-    try {
-      const res = await fetch(`/api/client?id=${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
 
+      try {
+        const res = await fetch(`/api/client?id=${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
       const data = await res.json();
-
-      if (data.succes) {
-        return true;
-      }
+      router.reload(data);
     } catch (error) {
       console.log(error);
     }
@@ -62,12 +60,8 @@ function Editar_usuario(props) {
 
   return (
     <div>
-      <button
-        onClick={openModal}
-        className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800"
-        type="button"
-      >
-        Abrir formulario
+      <button onClick={openModal} className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover-bg-blue-700 dark:focus:ring-blue-800" type="button">
+        Editar 
       </button>
 
       {modalVisible && (
@@ -152,20 +146,14 @@ function Editar_usuario(props) {
                     required
                   />
 
-                  <label
-                    htmlFor="telefono"
-                    className="text-gray-500 dark-text-gray-400"
-                  >
-                    Teléfono:
-                  </label>
-                  <input
-                    type="tel"
-                    id="telefono"
-                    name="telefono"
-                    value={form.telefono}
-                    className="border border-gray-300 rounded-lg p-2 focus-outline-none focus-ring-2 focus-ring-blue-300"
-                    required
-                  />
+            <label htmlFor="telefono" className="text-gray-500 dark-text-gray-400">Teléfono:</label>
+            <input 
+              type="tel" 
+              id="telefono" 
+              name="telefono" 
+              value={form.telefono} 
+              onChange={handleChange}
+              className="border border-gray-300 rounded-lg p-2 focus-outline-none focus-ring-2 focus-ring-blue-300" required />
 
                   <label
                     htmlFor="mensaje"

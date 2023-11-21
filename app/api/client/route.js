@@ -47,24 +47,9 @@ export async function DELETE(request) {
 export async function PUT(request, { params }) {
   const id_cambiar = request.nextUrl.searchParams.get("id");
   //const update = { newNombre: nombre, newApellido: apellido, newCorreo: correo, newTelefono: telefono, newMensaje: mensaje } = await request.json();
-  try {
-    const { nombre, apellido, correo, telefono, mensaje } = await request
-      .json();
-    console.log(nombre, apellido);
-    await conexionBD();
-    await clients.findByIdAndUpdate(id_cambiar, {
-      nombre: nombre,
-      apellido: apellido,
-      correo: correo,
-      telefono: telefono,
-      mensaje: mensaje,
-    });
-    return NextResponse.json({ message: "Datos actualizados", succes: true }, {
-      status: 200,
-    });
-  } catch (error) {
-    return NextResponse.json({ message: "Hubo un error", succes: false }, {
-      status: 201,
-    });
-  }
+  const { nombre, apellido, correo, telefono, mensaje } = await request.json();
+  console.log(nombre, apellido)
+  await conexionBD();
+  await clients.findByIdAndUpdate(id_cambiar, { nombre: nombre,  apellido: apellido, correo:correo, telefono: telefono, mensaje:mensaje});
+  return NextResponse.json({ message: "Datos actualizados" }, { status: 200 });
 }
