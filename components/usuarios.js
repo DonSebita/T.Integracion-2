@@ -15,9 +15,9 @@ function Usuarios(props) {
   }, []);
 
   return (
-    <div className="overflow-x-auto p-4">
+    <div className="flex flex-col w-full p-4 ">
       <h2 className="text-2xl font-bold mb-4 text-gray-800">Lista de Usuarios:</h2>
-      <table className="min-w-full bg-white border border-gray-300 shadow-lg rounded-lg text-sm">
+      <table className="max-w-full bg-white border border-gray-300 shadow-lg rounded-lg text-sm">
         <thead>
           <tr className="bg-gray-100">
             <th className="py-2 px-4">Nombre</th> 

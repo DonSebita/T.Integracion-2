@@ -13,7 +13,8 @@ export async function GET() {
       apellido,
       correo,
     }));
-    return new Response({ resultado });
+    console.log(resultado)
+    return  Response.json( resultado );
   } catch (error) {
     console.log(error);
     return new Response({ succes: false, message: "a sucedio un error" });

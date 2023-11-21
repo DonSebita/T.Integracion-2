@@ -11,12 +11,12 @@ export const metadata = {
 
 export default function Layout({ children }) {
   return (
-    <div
-      className={"grid grid-flow-row auto-rows-max"}
+    <main
+      className={"flex flex-col h-auto"}
     >
       <Navbar />
-      <main>{children}</main>
+      <div>{children}</div>
       <Footbar />
-    </div>
+    </main>
   );
 }

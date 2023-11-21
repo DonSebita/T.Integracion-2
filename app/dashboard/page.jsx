@@ -1,6 +1,7 @@
 "use client";
 import Caso from "@/components/CardCasos";
 import FormCaso from "@/components/formularios/formCaso";
+import Navbar from "@/components/navbar";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 
@@ -29,6 +30,7 @@ export default function Dashboard() {
 
   return (
     <main className="mx-auto w-full min-h-screen bg-gray-50 pb-10">
+      <Navbar/>
       <div className="px-16 py-6">
         <div className="bg-white px-4">
           <div>

@@ -10,7 +10,12 @@ const links = [
   { label: "Contactanos", ruta: "/principal/contacto" },
 ];
 
-const Navbar = () => {
+const linksPriv = [
+  { label: "Dashboard", ruta: "/dashboard" },
+  { label: "Eventos", ruta: "/dashboard/eventos" },
+];
+
+const Navbar = ({ className }) => {
   const { data: session } = useSession();
   const { status } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,13 +29,13 @@ const Navbar = () => {
       <div className="flex items-center justify-between py-3 pr-5">
         <div className="flex items-center flex-shrink-0 text-white mr-6">
           <Link href="/">
-          <Image
-            src={"/logo.png"}
-            width={50}
-            height={50}
-            alt="logo principal  nadvar"
-            className="w-auto h-10 mx-5"
-          />
+            <Image
+              src={"/logo.png"}
+              width={50}
+              height={50}
+              alt="logo principal  nadvar"
+              className="w-auto h-10 mx-5"
+            />
           </Link>
         </div>
 
@@ -56,6 +61,7 @@ const Navbar = () => {
           </button>
 
           {menuOpen && (
+
             <div className="mt-4">
               {links.map(({ label, ruta }, index) => (
                 <Link
@@ -97,16 +103,27 @@ const Navbar = () => {
 
         {/* Menú lateral para dispositivos de pantalla grande (no se muestra en dispositivos móviles) */}
         <div className="hidden lg:flex lg:items-center lg:w-auto">
-          {links.map(({ label, ruta }, index) => (
-            <Link
-              className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 mr-4"
-              href={ruta}
-              key={index}
-            >
-              {label}
-            </Link>
-          ))}
-
+         {status === "authenticated" ? (
+  linksPriv.map(({ label, ruta }, index) => (
+    <Link
+      className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 mr-4"
+      href={ruta}
+      key={index}
+    >
+      {label}
+    </Link>
+  ))
+) : (
+  links.map(({ label, ruta }, index) => (
+    <Link
+      className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-gray-200 mr-4"
+      href={ruta}
+      key={index}
+    >
+      {label}
+    </Link>
+  ))
+)}
           {status === "authenticated"
             ? (
               <div className="group inline-block relative w-auto bg-teal-300 h-full px-3 py-2">
@@ -129,7 +146,7 @@ const Navbar = () => {
                     <Link href={"/user/perfil"}>Perfil</Link>
                   </li>
                   <li className="rounded-sm px-3 py-1 border-b border-gray-300 hover:bg-teal-600">
-                    <Link href={"/paginaAbogados"}>Eventos</Link>
+                    <Link href={"/paginaAbogados"}>Clientes</Link>
                   </li>
                   <li className="rounded-sm px-3 py-1 hover:bg-teal-600">
                     <button
