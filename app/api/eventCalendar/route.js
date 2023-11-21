@@ -1,6 +1,6 @@
 import { google } from "googleapis";
 import { getServerSession } from "next-auth";
-import authOptions from "../auth/[...nextauth]/route";
+/*
 
 const GOOGLE_ID = process.env.CLIENT_ID;
 const GOOGLE_SECRET = process.env.CLIENT_SECRET;
@@ -96,4 +96,4 @@ export async function POST(request) {
     console.log(error);
     return Response.json({ "succes": false });
   }
-}
+}*/

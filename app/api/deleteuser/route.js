@@ -8,7 +8,7 @@ export default async (req, res) => {
     
     try {
         // Get the connection to the database.
-        const db = await conexionBD;
+        const db = await conexionBD();
         // Check if db is a database object.
         if (db instanceof Db) {
             // Delete a product in the collection by _id.

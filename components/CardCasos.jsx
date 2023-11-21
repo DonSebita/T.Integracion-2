@@ -1,26 +1,27 @@
 import React from "react";
 import Image from "next/image";
 
-const CasoEstado = [["text-gray-300", "Finalizado"], [
-  "text-green-600",
-  "Activo",
-], [
-  "text-gray-black",
-  <button className="border border-gray-300 hover:bg-gray-300 p-2 rounded-lg">
-    Tomar Caso
-  </button>,
-]];
 
-const Caso = ({ abogado, activo, cliente, titulo, descripcion }) => {
+const CasoEstado = [
+  {key:1, color: "text-gray-300", valor: "Finalizado" },
+  {key:2, color: "text-green-600", valor: "Activo" },
+  {key:3, color: "text-gray-black", valor: (
+    <button className="border border-gray-300 hover:bg-gray-300 p-2 rounded-lg">
+      Tomar Caso
+    </button>
+  ) },
+];
+
+const Caso = ({ abogado, activo, cliente, titulo, descripcion, key }) => {
   const indice = activo;
 
   // Verificar si el índice es válido
   const estado = CasoEstado[indice]
-    ? CasoEstado[indice][1]
+    ? CasoEstado[indice].valor
     : "Estado Desconocido";
 
   return (
-    <div className="mb-6 rounded-lg bg-white p-6 flex flex-col">
+    <div key={key} className="mb-6 rounded-lg bg-white p-6 flex flex-col">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <Image
@@ -36,7 +37,7 @@ const Caso = ({ abogado, activo, cliente, titulo, descripcion }) => {
             </h3>
           </div>
         </div>
-        <p className={`text-sm font-medium ${CasoEstado[indice][0]}`}>
+        <p className={`text-sm font-medium ${CasoEstado[indice].color}`}>
           {estado}
         </p>
       </div>
