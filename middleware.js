@@ -1,8 +1,15 @@
 export { default } from "next-auth/middleware";
- 
-export const config = {
-  matcher: ["/dashboard/:path*","/api/casoJurtidico", 
-    "/api/deleteuser","/api/eventCalendar", "/user/register", "/api/perfil", "/paginaAbogados",
-    "/user/perfil", ]
-}
 
+export const config = {
+  matcher: [
+    "/dashboard/:path*",
+    "/user/register",
+    "/paginaAbogados",
+    "/user/perfil",
+    "/api/deleteuser",
+    "/api/eventCalendar",
+    "/api/user/:path*",
+    "/api/perfil",
+    "/api/casoJurtidico",
+  ],
+};

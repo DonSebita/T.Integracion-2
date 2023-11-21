@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className="flex items-center flex-shrink-0 text-white mr-6">
 
           <Image
-            src="/../public/logo.png"
+            src={"/logo.png"}
             width={50}
             height={50}
             alt="logo principal navbar"
