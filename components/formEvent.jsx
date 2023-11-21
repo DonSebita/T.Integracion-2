@@ -231,9 +231,6 @@ const FormEventCalendar = () => {
         Enviar
       </button>
       <div>
-        <button type="button" onClick={showToast}>
-          Mostrar Toast Personalizado
-        </button>
         {toast}
       </div>
     </form>

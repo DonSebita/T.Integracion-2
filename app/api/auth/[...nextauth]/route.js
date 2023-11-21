@@ -51,7 +51,7 @@ export const authOptions = {
 
           const user = {
             id: usuario.id,
-            //rut: usuario.rut,
+            rut: usuario.rut,
             correo: usuario.correo,
             nombre: usuario.nombre,
             apellido: usuario.apellido,
@@ -131,6 +131,6 @@ export const authOptions = {
     },
   },
 };
-
+export default NextAuth(authOptions)
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

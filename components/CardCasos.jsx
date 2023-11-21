@@ -12,7 +12,7 @@ const CasoEstado = [
   ) },
 ];
 
-const Caso = ({ abogado, activo, cliente, titulo, descripcion, key }) => {
+const Caso = ({ abogado, activo, cliente, titulo, descripcion }) => {
   const indice = activo;
 
   // Verificar si el índice es válido
@@ -21,7 +21,7 @@ const Caso = ({ abogado, activo, cliente, titulo, descripcion, key }) => {
     : "Estado Desconocido";
 
   return (
-    <div key={key} className="mb-6 rounded-lg bg-white p-6 flex flex-col">
+    <div className="mb-6 rounded-lg bg-white p-6 flex flex-col">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <Image
@@ -29,7 +29,7 @@ const Caso = ({ abogado, activo, cliente, titulo, descripcion, key }) => {
             width={500}
             height={500}
             src="/Image/users/Christian_Verdugo.jpeg"
-            alt=""
+            alt="imagen_usuario"
           />
           <div>
             <h3 className="text-base font-semibold text-gray-900">
@@ -37,7 +37,7 @@ const Caso = ({ abogado, activo, cliente, titulo, descripcion, key }) => {
             </h3>
           </div>
         </div>
-        <p className={`text-sm font-medium ${CasoEstado[indice].color}`}>
+        <p  className={`text-sm font-medium ${CasoEstado[indice].color}`}>
           {estado}
         </p>
       </div>

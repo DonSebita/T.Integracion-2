@@ -34,6 +34,10 @@ const clienteSchema = new Schema({
     require: [true, "El apellido es requerido"],
     trim: true,
   },
+  asignado:{
+    type: Boolean,
+    default: false,    
+  }
 });
 
 const clients = mongoose.models.clients || mongoose.model("clients", clienteSchema)

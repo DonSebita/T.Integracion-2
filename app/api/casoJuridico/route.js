@@ -1,5 +1,6 @@
 import conexionBD from "@/lib/cxDB";
 import Caso from "@/models/Caso";
+import clients from "@/models/Client";
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 
@@ -31,10 +32,14 @@ export async function GET(request) {
       {
         let abogado = caso.Abogado_info[0];
         if (abogado) {
-          let { nombre , apellido, _id } = abogado;
+          let { nombre, apellido, _id } = abogado;
           caso.Abogado_info = { nombre, apellido, _id };
         } else {
-          caso.Abogado_info = { nombre:"Sin", apellido:"Asignacion", _id: "" };
+          caso.Abogado_info = {
+            nombre: "Sin",
+            apellido: "Asignacion",
+            _id: "",
+          };
         }
       }
 
@@ -42,13 +47,10 @@ export async function GET(request) {
       if (cliente) {
         let { nombre, apellido } = cliente;
         caso.Cliente_info = { nombre, apellido };
-        console.log(caso);
       } else {
-        caso.Cliente_info = { nombre:"Si", apellido:"Cliente" }; 
+        caso.Cliente_info = { nombre: "Cliente", apellido: "Indefinido" };
       }
     });
-
-    //console.log(casos)
     return Response.json(casos);
   } catch (error) {
     console.log(error);
@@ -57,20 +59,24 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  const data = await request.json();
+  const { titulo, descripcion, abogado, cliente } = await request.json();
   await conexionBD();
-  console.log(data);
   try {
+    // Creamos el caso en base a los datos del formulario
     const res = await Caso.create({
-      titulo: "Contrato de Arrendamiento",
-      descripcion:
-        "Caso en el que surge una disputa entre el propietario y el inquilino sobre los términos del contrato de arrendamiento, como el mantenimiento de la propiedad, el pago del alquiler, etc.",
-      abogado_id: new ObjectId("ffffffffffffffffffffffff"),
-      activo: 2,
+      titulo: titulo,
+      descripcion: descripcion,
+      abogado_id: new ObjectId(abogado),
+      cliente_id: new ObjectId(cliente),
+      activo: abogado != "ffffffffffffffffffffffff" ? 1 : 2,
     });
-    console.log(res);
+    // Cambiamos el estado de asignado del contacto
+    if (res) {
+      await clients.findByIdAndUpdate(cliente, { asignado: true });
+    }
+    return Response.json({ succes: true, message: "Caso creado con exito" });
   } catch (error) {
     console.log(error);
+    return Response.json({ succes: false, message: "Ah ocurrido un error" });
   }
-  return Response.json({ aa: "Todo correctoaaaaa" });
 }

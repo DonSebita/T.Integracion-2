@@ -27,19 +27,54 @@ const Contacto = () => {
     try {
       //console.log(form);
 
-      const res = await fetch("/api/client", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(form),
-      });
+      if (Object.values(form).every((valor) => valor !== "")) {
+        const res = await fetch("/api/client", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
 
-      const data = await res.json();
-      console.log(data);
+        const data = await res.json();
+        console.log(data);
+        if (data) {
+          showToast(data.message);
+          setForm({
+            nombre: "",
+            apellido: "",
+            correo: "",
+            telefono: "",
+            mensaje: "",
+          });
+        }
+      } else {
+        showToast("Tiene campos vacios");
+      }
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const [toast, setToast] = useState(null);
+
+  const showToast = (texto) => {
+    const ToastPersonalizado = (
+      <div
+        id="toast-bottom-right"
+        className="fixed flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white divide-x divide-gray-200 rounded-lg shadow right-5 bottom-5 dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800"
+        role="alert"
+      >
+        <div className="text-sm font-normal">{texto}</div>
+      </div>
+    );
+
+    setToast(ToastPersonalizado);
+
+    // Desaparecer después de 2 segundos
+    setTimeout(() => {
+      setToast(null);
+    }, 2000);
   };
 
   return (
@@ -110,7 +145,7 @@ const Contacto = () => {
                       type="email"
                       name="correo"
                       autoComplete="off"
-                      value={form.email}
+                      value={form.correo}
                       onChange={handleChange}
                       placeholder="Ingrese su Correo"
                     />
@@ -158,6 +193,7 @@ const Contacto = () => {
           </div>
         </div>
       </div>
+      {toast}
     </main>
   );
 };
