@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/components/navbarAbogados";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
@@ -80,6 +81,7 @@ const Perfil = () => {
 
   return (
     <main>
+      <Navbar/>
       {mostrar == false
         ? (
           <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800 mt-20">
@@ -117,28 +119,28 @@ const Perfil = () => {
                   <div className="w-1/2 text-center">
                     <span className="font-bold">Nombre</span>
                     <br />
-                    Christian
+                    {session?.user?.nombre}
                   </div>
                   <div className="w-0 border border-gray-300">
                   </div>
                   <div className="w-1/2 text-center">
                     <span className="font-bold">Apellido</span>
                     <br />
-                    Verdugo
+                    {session?.user?.apellido}
                   </div>
                 </div>
                 <div className="flex p-4 border-t border-gray-300 mx-3">
                   <div className="w-1/2 text-center">
                     <span className="font-bold">Rut</span>
                     <br />
-                    20.708.854-4
+                    {session?.user?.rut}
                   </div>
                   <div className="w-0 border border-gray-300">
                   </div>
                   <div className="w-1/2 text-center">
                     <span className="font-bold">Correo</span>
                     <br />
-                    crischandel@gmail.com
+                     {session?.user?.correo}
                   </div>
                 </div>
               </div>

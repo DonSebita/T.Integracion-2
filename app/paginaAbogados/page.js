@@ -2,7 +2,7 @@
 import React from "react";
 import MyCalendar from "@/components/MyCalendar";
 import Usuarios from "@/components/usuarios";
-
+import Navbar from "@/components/navbarAbogados"
 const events = [
   {
     start: new Date(),
@@ -14,14 +14,21 @@ const events = [
 
 const CalendarPage = () => {
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      <div style={{ flex: 1, padding: "20px" }}>
-        <h1>Calendario</h1>
-        <MyCalendar events={events} />
-      </div>
-      <div style={{ flex: 1, padding: "20px" }}>
-      
-        <Usuarios />
+    <div>
+      <Navbar/>
+      <div className="flex flex-col lg:flex-row h-screen bg-gray-100">
+        <div className="lg:w-1/2 bg-indigo-400 p-6">
+          <h1 className="text-3xl mb-4 font-semibold text-white">Calendario</h1>
+          <div className="bg-white rounded-lg shadow-lg p-4">
+            <MyCalendar events={events} />
+          </div>
+        </div>
+        <div className="lg:w-1/2 bg-teal-400 p-6">
+          <h1 className="text-3xl mb-4 font-semibold text-white">Lista de Usuarios</h1>
+          <div className="bg-white rounded-lg shadow-lg p-4">
+            <Usuarios />
+          </div>
+        </div>
       </div>
     </div>
   );

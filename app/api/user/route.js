@@ -28,13 +28,13 @@ export async function PUT(request) {
     const { user } = await getServerSession(authOptions);
     const { id } = user;
     if (user) {
-      const datos = await Abogado.findOneAndUpdate({ _id:id }, {
+      const datos = await Abogado.findOneAndUpdate({ _id: id }, {
         nombre,
         apellido,
         correo,
         rut,
       });
-      return Response.json({ succes: true, message:"Cambiado correctamente"});
+      return Response.json({ succes: true, message: "Cambiado correctamente" });
     }
   } catch (error) {
     console.log(error);
